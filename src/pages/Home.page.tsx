@@ -21,11 +21,13 @@ const homePageStyle = css`
     margin: 1rem;
 
     .imageDiv {
+      order: 2;
       img {
         height: 600px;
       }
     }
     .textDiv {
+      order: 1;
       width: 100%;
       height: fit-content;
       align-items: center;
