@@ -18,7 +18,7 @@ const homePageStyle = css`
     grid-template-columns: 50% 50%;
     place-items: left;
     padding: 2rem;
-    margin: 1rem;
+    margin: 90px 4rem 1rem 4rem;
 
     .imageDiv {
       order: 2;
@@ -55,15 +55,17 @@ const homePageStyle = css`
       grid-template-columns: none;
       place-items: center;
       padding: 2rem;
-      margin: 1rem;
+      margin: 90px 2rem 1rem 2rem;
 
       .imageDiv {
+        order: 1;
         img {
           height: 600px;
         }
       }
 
       .textDiv {
+        order: 1;
         width: 100%;
         align-items: center;
         flex-direction: column;
@@ -89,7 +91,7 @@ const homePageStyle = css`
   .subButton {
     background: var(--whiteColor);
     color: var(--blackColor);
-    border: 1px solid var(--greyColor) !important;
+    border: 1px solid lightgray;
   }
 `;
 

@@ -1,6 +1,7 @@
 import React from "react";
 import HomePage from "./pages/Home.page";
 import { Global, css } from "@emotion/react";
+import Navbar from "./components/Navbar";
 
 const globalStyle = css`
   @import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap");
@@ -31,6 +32,7 @@ const globalStyle = css`
 
   a {
     text-decoration: none;
+    color: var(--blackColor);
   }
 
   li {
@@ -89,6 +91,7 @@ function App() {
   return (
     <div className="App">
       <Global styles={globalStyle} />
+      <Navbar />
       <HomePage />
     </div>
   );
