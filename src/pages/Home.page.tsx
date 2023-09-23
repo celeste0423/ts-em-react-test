@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { css } from "@emotion/react";
 
 import brainDesktopImage from "../assets/brain-desktop.svg";
 import Question from "../components/Question";
+import TestCards from "../components/TestCards";
 
 const homePageStyle = css`
   :root {
@@ -97,6 +98,7 @@ const homePageStyle = css`
 `;
 
 function HomePage() {
+  const [selectedQuestionIdx, setSelectedQuestionIdx] = useState(0);
   return (
     <section css={homePageStyle} className="getStarted">
       <div className="contentGrid grid">
@@ -120,7 +122,7 @@ function HomePage() {
       </div>
 
       <Question
-        questionNumber={100}
+        questionNumber={selectedQuestionIdx}
         // testQuestion={`A 75-year-old man presents to Accident and Emergency following a week of productive cough, fever and shortness of breath. He has not had any foreign travel, however is a chronic smoker with a 15 pack/year history.`}
         testQuestion={"This is a sample test question"}
         options={[
@@ -131,6 +133,8 @@ function HomePage() {
         ]}
         correctAnswerIndex={0}
       />
+
+      <TestCards onPressCard={(index) => setSelectedQuestionIdx(index)} />
     </section>
   );
 }
