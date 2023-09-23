@@ -2,6 +2,7 @@ import React from "react";
 import { css } from "@emotion/react";
 
 import brainDesktopImage from "../assets/brain-desktop.svg";
+import Question from "../components/Question";
 
 const homePageStyle = css`
   :root {
@@ -117,8 +118,33 @@ function HomePage() {
           </div>
         </div>
       </div>
+
+      <Question
+        questionNumber={100}
+        // testQuestion={`A 75-year-old man presents to Accident and Emergency following a week of productive cough, fever and shortness of breath. He has not had any foreign travel, however is a chronic smoker with a 15 pack/year history.`}
+        testQuestion={"This is a sample test question"}
+        options={[
+          "Reduced vocal resonance and dull percussion note",
+          "Hyper-resonant percussion note and tracheal deviation to the left",
+          "Increased tactile vocal fremitus and dull percussion note",
+          "Increased vocal resonance and fine end inspiratory crepitations",
+        ]}
+        correctAnswerIndex={0}
+      />
     </section>
   );
 }
+
+// const testQuestion = `A 75-year-old man presents to Accident and Emergency following a week of productive cough, fever and shortness of breath. He has not had any foreign travel, however is a chronic smoker with a 15 pack/year history.
+
+// Which of the following findings is most likely to be found on examination of this patient’s chest?`;
+
+// const options = [
+// "Reduced vocal resonance and dull percussion note",
+// "Hyper-resonant percussion note and tracheal deviation to the left",
+// "Increased tactile vocal fremitus and dull percussion note",
+// "Increased vocal resonance and fine end inspiratory crepitations",
+// ];
+// const correctAnswerIndex = 0;
 
 export default HomePage;
