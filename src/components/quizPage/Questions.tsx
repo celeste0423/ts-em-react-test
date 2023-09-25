@@ -117,12 +117,12 @@ const Questions: React.FC<QuestionCompType> = ({
                     answerString={indexString}
                     answerCheck={
                       !checkAnswer
-                        ? null
+                        ? null //정답 확인 전
                         : radioIndex === answerIndex
-                        ? index === answerIndex
+                        ? index === answerIndex //정답일 경우
                           ? true
                           : null
-                        : index === answerIndex
+                        : index === answerIndex //오답일 경우
                         ? true
                         : index === radioIndex
                         ? false
