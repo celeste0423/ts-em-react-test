@@ -2,6 +2,8 @@ import React from "react";
 import HomePage from "./pages/Home.page";
 import { Global, css } from "@emotion/react";
 import Navbar from "./components/Navbar";
+import Router from "./Router";
+import QuizPage from "./pages/Quiz.page";
 
 const globalStyle = css`
   @import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap");
@@ -92,7 +94,7 @@ function App() {
     <div className="App">
       <Global styles={globalStyle} />
       <Navbar />
-      <HomePage />
+      <Router />
     </div>
   );
 }
