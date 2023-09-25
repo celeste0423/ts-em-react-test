@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { css } from "@emotion/react";
 import QuizNavbar from "../components/quizPage/QuizNavbar";
 import Questions from "../components/quizPage/Questions";
@@ -27,6 +27,8 @@ const quizPageStyle = css`
 `;
 
 const QuizPage: React.FC = () => {
+  const [quizIndex, setQuizIndex] = useState<number>(1);
+
   return (
     <section css={quizPageStyle}>
       <div className="contentGrid grid">

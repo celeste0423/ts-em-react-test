@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "@emotion/react";
 
-const revieoCardStyle = css`
+const reviewCardStyle = css`
   :root {
     --primaryColor: #256af4;
     --secondaryColor: #729ffa;
@@ -12,16 +12,13 @@ const revieoCardStyle = css`
     --blackCardBackgroundColor: #19191980;
   }
 
-  background-color: pink;
-  height: 100vb;
-
   .content {
   }
 `;
 
 const ReviewCards: React.FC = () => {
   return (
-    <section css={revieoCardStyle}>
+    <section css={reviewCardStyle}>
       <div className="content">this is reviewCards</div>
     </section>
   );
