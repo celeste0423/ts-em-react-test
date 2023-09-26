@@ -11,10 +11,18 @@ const reviewCardStyle = css`
     --greyColor: #454545;
     --blackCardBackgroundColor: #19191980;
   }
+  height:100vb;
 
   .content {
     display: grid;
-    width: 100%
+    width: 100%;
+
+    margin-top: 85px;
+
+    background: var(--whiteColor);
+    padding: 1rem 2rem 10rem 2rem;
+    border-radius: 0.3rem;
+    box-shadow: -2px 1px 4px rgba(0, 0, 0, 0.101);
   }
   .grid_container {
      display: grid;
