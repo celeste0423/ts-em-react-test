@@ -3,6 +3,8 @@ import { css } from "@emotion/react";
 import { Link } from "react-router-dom";
 import AnswerCard from "./AnswerCard";
 
+import { MdTextFields } from "react-icons/md";
+
 const questionsStyle = css`
   :root {
     --primaryColor: #256af4;
@@ -20,8 +22,55 @@ const questionsStyle = css`
   .content {
     .titleDiv {
       margin-bottom: 1rem;
+      justify-content: space-between;
       .title {
         font-weight: 400;
+      }
+      .buttonDiv {
+        width: 35px;
+        height: 35px;
+        border-radius: 3rem;
+        padding: 5px 5px;
+        &:hover {
+          background: lightgray;
+          cursor: pointer;
+        }
+      }
+
+      .textSizePopupDiv {
+        .background {
+          z-index: 2000;
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          background: rgba(0, 0, 0, 0.1);
+        }
+        .textSizePopup {
+          position: absolute;
+          z-index: 2100;
+          right: 0;
+          background-color: var(--whiteColor);
+          width: 300px;
+          height: 50px;
+          margin-right: 2rem;
+          margin-top: -20px;
+          border-radius: 1rem;
+          box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.3);
+          justify-content: center;
+          .slider {
+            margin: 0 1rem 0 1rem;
+            border: none;
+          }
+          .slider::-webkit-slider-thumb {
+            width: 150px;
+            height: 15px;
+          }
+        }
+      }
+      .off {
+        display: none;
       }
     }
 
@@ -78,6 +127,12 @@ const Questions: React.FC<QuestionCompType> = ({
   correctDescription,
   wrongDescription,
 }) => {
+  const [textSizePopup, setTextSizePopup] = useState<boolean>(false);
+
+  const openPop = () => {
+    !textSizePopup ? setTextSizePopup(true) : setTextSizePopup(false);
+  };
+
   const [radioIndex, setRadioIndex] = useState<number | null>(null);
 
   const [checkAnswer, setCheckAnswer] = useState<boolean>(false);
@@ -85,8 +140,25 @@ const Questions: React.FC<QuestionCompType> = ({
   return (
     <section css={questionsStyle}>
       <div className="content">
-        <div className="titleDiv">
+        <div className="titleDiv flex">
           <h3 className="title">Sample Clinical Questions</h3>
+          <div onClick={() => openPop()} className="buttonDiv">
+            <MdTextFields size="25" />
+          </div>
+          <div className={`textSizePopupDiv ${!textSizePopup ? "off" : "on"}`}>
+            <div onClick={() => openPop()} className="background" />
+            <div className={`textSizePopup flex `}>
+              <small>A</small>
+              <input
+                type="range"
+                min="0"
+                max="10"
+                step="1"
+                className="slider"
+              />
+              <h2>A</h2>
+            </div>
+          </div>
         </div>
 
         <div className="questionsDiv">
