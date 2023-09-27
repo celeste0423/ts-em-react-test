@@ -143,7 +143,7 @@ const Questions: React.FC<QuestionType> = ({ question }) => {
 
   const [checkAnswer, setCheckAnswer] = useState<boolean>(false);
 
-  //UI
+  //UI ------------------------------------------------------------------
   function TitleDiv() {
     return (
       <div className="titleDiv flex">
