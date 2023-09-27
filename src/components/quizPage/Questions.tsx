@@ -80,15 +80,17 @@ const questionsStyle = css`
       border-radius: 0.3rem;
       box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.101);
 
-      .questionNumberDiv {
-        margin-bottom: 1.5rem;
-      }
+      .questionContentDiv {
+        .questionNumberDiv {
+          margin-bottom: 1.5rem;
+        }
 
-      .answerDiv {
-        margin: 2rem 0 2rem;
+        .answerDiv {
+          margin: 2rem 0 2rem;
 
-        .answerCard {
-          cursor: pointer;
+          .answerCard {
+            cursor: pointer;
+          }
         }
       }
 
@@ -118,24 +120,19 @@ type QuestionCompType = {
   correctDescription: string;
   wrongDescription: string;
 };
+type QuestionType = {
+  question: QuestionCompType;
+};
 
-const Questions: React.FC<QuestionCompType> = ({
-  questionNumber,
-  questionString,
-  answerIndex,
-  indexStrings,
-  correctDescription,
-  wrongDescription,
-}) => {
-
+const Questions: React.FC<QuestionType> = ({ question }) => {
   const [textSizePopup, setTextSizePopup] = useState<boolean>(false);
   const openPop = () => {
     !textSizePopup ? setTextSizePopup(true) : setTextSizePopup(false);
   };
 
   const [fontSize, setFontSize] = useState<number>(0);
-  const updateFontSize = (input: { target: { value: string } }) => {
-    setFontSize(Number(input.target.value));
+  const updateFontSize = (event: { target: { value: string } }) => {
+    setFontSize(Number(event.target.value));
     // console.log(fontSize);
   };
   const fontSizeStyle = {
@@ -146,105 +143,126 @@ const Questions: React.FC<QuestionCompType> = ({
 
   const [checkAnswer, setCheckAnswer] = useState<boolean>(false);
 
+  //UI
+  function TitleDiv() {
+    return (
+      <div className="titleDiv flex">
+        <h3 className="title">Sample Clinical Questions</h3>
+        <div
+          onClick={() => openPop()}
+          className={`buttonDiv ${!textSizePopup ? "on" : "off"}`}
+        >
+          <MdTextFields size="25" />
+        </div>
+        <div className={`textSizePopupDiv ${!textSizePopup ? "off" : "on"}`}>
+          <div onClick={() => openPop()} className="background" />
+          <div className={`textSizePopup flex `}>
+            <small>A</small>
+            <input
+              type="range"
+              min="0"
+              max="10"
+              step="1"
+              className="slider"
+              value={fontSize}
+              onChange={updateFontSize}
+            />
+            <h2>A</h2>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  function QuestionContentDiv() {
+    return (
+      <div className="questionContentDiv">
+        <div className="questionNumberDiv">
+          <h3 className="questionNumber">Question {question.questionNumber}</h3>
+        </div>
+
+        <div className="questionDiv">
+          <p style={fontSizeStyle} className="question">
+            {question.questionString}
+          </p>
+        </div>
+
+        <div className="answerDiv">
+          {question.indexStrings.map((indexString, index) => {
+            return (
+              <div
+                className={!checkAnswer ? "answerCard" : ""}
+                onClick={
+                  !checkAnswer
+                    ? () => {
+                        setRadioIndex(index);
+                      }
+                    : () => {}
+                }
+              >
+                <AnswerCard
+                  key={index}
+                  fontSize={fontSize}
+                  radioBtnCheck={radioIndex === index}
+                  answerString={indexString}
+                  answerCheck={
+                    !checkAnswer
+                      ? null //정답 확인 전
+                      : radioIndex === question.answerIndex
+                      ? index === question.answerIndex //정답일 경우
+                        ? true
+                        : null
+                      : index === question.answerIndex //오답일 경우
+                      ? true
+                      : index === radioIndex
+                      ? false
+                      : null
+                  }
+                  descriptionString={
+                    index === question.answerIndex
+                      ? question.correctDescription
+                      : index === radioIndex
+                      ? question.wrongDescription
+                      : ""
+                  }
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  function ButtonDiv() {
+    return (
+      <div className="buttonDiv flex">
+        <Link to="/">
+          <button className="btn finishBtn">Finish Test</button>
+        </Link>
+        <button
+          onClick={() => {
+            setCheckAnswer(true);
+          }}
+          className="btn showAnsBtn"
+        >
+          Show Answer
+        </button>
+      </div>
+    );
+  }
+
   return (
     <section css={questionsStyle}>
       <div className="content">
-        <div className="titleDiv flex">
-          <h3 className="title">Sample Clinical Questions</h3>
-          <div
-            onClick={() => openPop()}
-            className={`buttonDiv ${!textSizePopup ? "on" : "off"}`}
-          >
-            <MdTextFields size="25" />
-          </div>
-          <div className={`textSizePopupDiv ${!textSizePopup ? "off" : "on"}`}>
-            <div onClick={() => openPop()} className="background" />
-            <div className={`textSizePopup flex `}>
-              <small>A</small>
-              <input
-                type="range"
-                min="0"
-                max="10"
-                step="1"
-                className="slider"
-                value={fontSize}
-                onChange={updateFontSize}
-              />
-              <h2>A</h2>
-            </div>
-          </div>
-        </div>
+        <TitleDiv />
 
         <div className="questionsDiv">
-          <div className="questionNumberDiv">
-            <h3 className="questionNumber">Question {questionNumber}</h3>
-          </div>
-
-          <div className="questionDiv">
-            <p style={fontSizeStyle} className="question">
-              {questionString}
-            </p>
-          </div>
-
-          <div className="answerDiv">
-            {indexStrings.map((indexString, index) => {
-              return (
-                <div
-                  className={!checkAnswer ? "answerCard" : ""}
-                  onClick={
-                    !checkAnswer
-                      ? () => {
-                          setRadioIndex(index);
-                        }
-                      : () => {}
-                  }
-                >
-                  <AnswerCard
-                    key={index}
-                    fontSize={fontSize}
-                    radioBtnCheck={radioIndex === index}
-                    answerString={indexString}
-                    answerCheck={
-                      !checkAnswer
-                        ? null //정답 확인 전
-                        : radioIndex === answerIndex
-                        ? index === answerIndex //정답일 경우
-                          ? true
-                          : null
-                        : index === answerIndex //오답일 경우
-                        ? true
-                        : index === radioIndex
-                        ? false
-                        : null
-                    }
-                    descriptionString={
-                      index === answerIndex
-                        ? correctDescription
-                        : index === radioIndex
-                        ? wrongDescription
-                        : ""
-                    }
-                  />
-                </div>
-              );
-            })}
-          </div>
+          <QuestionContentDiv />
 
           <div className="line" />
 
-          <div className="buttonDiv flex">
-            <Link to="/">
-              <button className="btn finishBtn">Finish Test</button>
-            </Link>
-            <button
-              onClick={() => {
-                setCheckAnswer(true);
-              }}
-              className="btn showAnsBtn"
-            >
-              Show Answer
-            </button>
-          </div>
+          <ButtonDiv />
         </div>
       </div>
     </section>
