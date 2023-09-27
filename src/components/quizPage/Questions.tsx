@@ -86,7 +86,7 @@ const Questions: React.FC<QuestionCompType> = ({
     <section css={questionsStyle}>
       <div className="content">
         <div className="titleDiv">
-          <h3 className="title">Sample Clinical Questions</h3>
+          <h3 className="title">Sample Clinical Questions </h3>
         </div>
 
         <div className="questionsDiv">

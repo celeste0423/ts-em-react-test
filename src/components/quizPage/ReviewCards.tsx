@@ -20,7 +20,7 @@ const reviewCardStyle = css`
     margin-top: 85px;
 
     background: var(--whiteColor);
-    padding: 1rem 2rem 10rem 2rem;
+    padding: 1rem 2rem 60% 2rem;
     border-radius: 0.3rem;
     box-shadow: -2px 1px 4px rgba(0, 0, 0, 0.101);
   }
@@ -51,6 +51,7 @@ const reviewCardStyle = css`
 `;
 
 const ReviewCards: React.FC = () => {
+
   return (
     <section css={reviewCardStyle}>
       <div className="content">
