@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Quesmed Page Clone project (for practice)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
