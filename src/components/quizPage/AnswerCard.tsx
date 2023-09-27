@@ -72,6 +72,7 @@ const answerCardStyle = css`
 
 type Props = {
   radioBtnCheck: boolean;
+  fontSize: number;
   answerString: string;
   descriptionString: string;
   answerCheck: boolean | null;
@@ -79,12 +80,17 @@ type Props = {
 
 const AnswerCard: React.FC<Props> = ({
   radioBtnCheck,
+  fontSize,
   answerString,
   descriptionString,
   answerCheck,
 }) => {
+  const fontSizeStyle = {
+    fontSize: `${16 + fontSize}px`,
+  };
+
   return (
-    <section css={answerCardStyle}>
+    <section style={fontSizeStyle} css={answerCardStyle}>
       {answerCheck === null ? (
         <div className="card flex">
           <input type="radio" checked={radioBtnCheck} className="radioBtn" />

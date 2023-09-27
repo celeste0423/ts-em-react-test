@@ -127,10 +127,19 @@ const Questions: React.FC<QuestionCompType> = ({
   correctDescription,
   wrongDescription,
 }) => {
-  const [textSizePopup, setTextSizePopup] = useState<boolean>(false);
 
+  const [textSizePopup, setTextSizePopup] = useState<boolean>(false);
   const openPop = () => {
     !textSizePopup ? setTextSizePopup(true) : setTextSizePopup(false);
+  };
+
+  const [fontSize, setFontSize] = useState<number>(0);
+  const updateFontSize = (input: { target: { value: string } }) => {
+    setFontSize(Number(input.target.value));
+    // console.log(fontSize);
+  };
+  const fontSizeStyle = {
+    fontSize: `${16 + fontSize}px`,
   };
 
   const [radioIndex, setRadioIndex] = useState<number | null>(null);
@@ -142,7 +151,10 @@ const Questions: React.FC<QuestionCompType> = ({
       <div className="content">
         <div className="titleDiv flex">
           <h3 className="title">Sample Clinical Questions</h3>
-          <div onClick={() => openPop()} className="buttonDiv">
+          <div
+            onClick={() => openPop()}
+            className={`buttonDiv ${!textSizePopup ? "on" : "off"}`}
+          >
             <MdTextFields size="25" />
           </div>
           <div className={`textSizePopupDiv ${!textSizePopup ? "off" : "on"}`}>
@@ -155,6 +167,8 @@ const Questions: React.FC<QuestionCompType> = ({
                 max="10"
                 step="1"
                 className="slider"
+                value={fontSize}
+                onChange={updateFontSize}
               />
               <h2>A</h2>
             </div>
@@ -167,7 +181,9 @@ const Questions: React.FC<QuestionCompType> = ({
           </div>
 
           <div className="questionDiv">
-            <p className="question">{questionString}</p>
+            <p style={fontSizeStyle} className="question">
+              {questionString}
+            </p>
           </div>
 
           <div className="answerDiv">
@@ -185,6 +201,7 @@ const Questions: React.FC<QuestionCompType> = ({
                 >
                   <AnswerCard
                     key={index}
+                    fontSize={fontSize}
                     radioBtnCheck={radioIndex === index}
                     answerString={indexString}
                     answerCheck={
