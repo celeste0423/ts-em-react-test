@@ -220,7 +220,7 @@ const QuizNavbar: React.FC = () => {
         <ul>
           <div>
             <li>
-              <img src={logoImage} className="logo-title" />
+              <img src={logoImage} className="logo-title" alt="top left logo"/>
             </li>
           </div>
 
@@ -230,7 +230,7 @@ const QuizNavbar: React.FC = () => {
 
           <div className="nav-menu">
             <li>
-              <img src={liveTutorial} />
+              <img src={liveTutorial} alt="icon 1"/>
               <a href="products.html">
                 <h1>Live tutorials</h1>
               </a>
@@ -238,61 +238,61 @@ const QuizNavbar: React.FC = () => {
             <div className="separating-line"></div>
             <li>
               <a href="pricing.html">
-                <img src={question} />
+                <img src={question} alt="icon 2"/>
                 <h1>Anatomy Questions</h1>
               </a>
             </li>
             <li>
               <a href="pricing.html">
-                <img src={question} />
+                <img src={question} alt="icon 3"/>
                 <h1>Cardiology Questions</h1>
               </a>
             </li>
             <li>
               <a href="pricing.html">
-                <img src={question} />
+                <img src={question} alt="icon 4"/>
                 <h1>Emergency Questions</h1>
               </a>
             </li>
             <li>
               <a href="pricing.html">
-                <img src={question} />
+                <img src={question} alt="icon 5"/>
                 <h1>Neurology Questions</h1>
               </a>
             </li>
             <li>
               <a href="pricing.html">
-                <img src={question} />
+                <img src={question} alt="icon 6"/>
                 <h1>Paediatric Questions</h1>
               </a>
             </li>
             <li>
               <a href="pricing.html">
-                <img src={question} />
+                <img src={question} alt="icon 7"/>
                 <h1>Physiology Questions</h1>
               </a>
             </li>
             <li>
               <a href="pricing.html">
-                <img src={question} />
+                <img src={question} alt="icon 8"/>
                 <h1>Clinical Questions</h1>
               </a>
             </li>
             <li>
               <a href="pricing.html">
-                <img src={question} />
+                <img src={question} alt="icon 9"/>
                 <h1>Pre-Clinical Questions</h1>
               </a>
             </li>
             <li>
               <a href="pricing.html">
-                <img src={quesCard} />
+                <img src={quesCard} alt="icon 10"/>
                 <h1>Clinical Quescards</h1>
               </a>
             </li>
             <li>
               <a href="pricing.html">
-                <img src={quesCard} />
+                <img src={quesCard} alt="icon 11"/>
                 <h1>Pre-Clinical Quescards</h1>
               </a>
             </li>
@@ -301,7 +301,7 @@ const QuizNavbar: React.FC = () => {
 
           <div className="subscribe-menu">
             <li>
-              <img src={subscribe} className="subscribe-icon" />
+              <img src={subscribe} className="subscribe-icon" alt="subscribe hat"/>
             </li>
             <h1>Subscribe today!</h1>
             <h2>
@@ -316,7 +316,7 @@ const QuizNavbar: React.FC = () => {
 
           <div>
             <li>
-              <img src={subscribeBackground} className="subscribe-background" />
+              <img src={subscribeBackground} className="subscribe-background" alt="background for subscribe"/>
             </li>
           </div>
         </ul>
