@@ -35,7 +35,7 @@ const QuizPage: React.FC = () => {
       <div className="contentGrid grid">
         <QuizNavbar />
         <Questions question={quizData[quizIndex]} />
-        <ReviewCards />
+        <ReviewCards onPressCard={(index) => setQuizIndex(index)} />
       </div>
     </section>
   );

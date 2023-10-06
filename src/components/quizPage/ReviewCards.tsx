@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { css } from "@emotion/react";
+
+type Props = {
+  onPressCard: (index: number) => void;
+};
 
 const reviewCardStyle = css`
   :root {
@@ -50,32 +54,32 @@ const reviewCardStyle = css`
       }
 `;
 
-const ReviewCards: React.FC = () => {
+const ReviewCards: React.FC<Props> = ({ onPressCard }) => {
 
   return (
     <section css={reviewCardStyle}>
       <div className="content">
       <h4>Review cards • /19</h4>
         <div className="grid_container">
-            <button className="button_style" >1</button>
-            <button className="button_style" >2</button>
-            <button className="button_style" >3</button>
-            <button className="button_style" >4</button>
-            <button className="button_style" >5</button>
-            <button className="button_style" >6</button>
-            <button className="button_style" >7</button>
-            <button className="button_style" >8</button>
-            <button className="button_style" >9</button>
-            <button className="button_style" >10</button>
-            <button className="button_style" >11</button>
-            <button className="button_style" >12</button>
-            <button className="button_style" >13</button>
-            <button className="button_style" >14</button>
-            <button className="button_style" >15</button>
-            <button className="button_style" >16</button>
-            <button className="button_style" >17</button>
-            <button className="button_style" >18</button>
-            <button className="button_style" >19</button>
+            <button className="button_style" onClick={() => {onPressCard(0)}} >1</button>
+            <button className="button_style" onClick={() => {onPressCard(1)}} >2</button>
+            <button className="button_style" onClick={() => {onPressCard(2)}} >3</button>
+            <button className="button_style" onClick={() => {onPressCard(3)}} >4</button>
+            <button className="button_style" onClick={() => {onPressCard(4)}} >5</button>
+            <button className="button_style" onClick={() => {onPressCard(5)}} >6</button>
+            <button className="button_style" onClick={() => {onPressCard(6)}} >7</button>
+            <button className="button_style" onClick={() => {onPressCard(7)}} >8</button>
+            <button className="button_style" onClick={() => {onPressCard(8)}} >9</button>
+            <button className="button_style" onClick={() => {onPressCard(9)}} >10</button>
+            <button className="button_style" onClick={() => {onPressCard(10)}} >11</button>
+            <button className="button_style" onClick={() => {onPressCard(11)}} >12</button>
+            <button className="button_style" onClick={() => {onPressCard(12)}} >13</button>
+            <button className="button_style" onClick={() => {onPressCard(13)}} >14</button>
+            <button className="button_style" onClick={() => {onPressCard(14)}} >15</button>
+            <button className="button_style" onClick={() => {onPressCard(15)}} >16</button>
+            <button className="button_style" onClick={() => {onPressCard(16)}} >17</button>
+            <button className="button_style" onClick={() => {onPressCard(17)}} >18</button>
+            <button className="button_style" onClick={() => {onPressCard(18)}} >19</button>
         </div>
       </div>
     </section>
