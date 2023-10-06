@@ -15,7 +15,9 @@ const reviewCardStyle = css`
     --greyColor: #454545;
     --blackCardBackgroundColor: #19191980;
   }
-  height:100vb;
+
+  height: 100vb;
+
 
   .content {
     display: grid;
@@ -29,58 +31,56 @@ const reviewCardStyle = css`
     box-shadow: -2px 1px 4px rgba(0, 0, 0, 0.101);
   }
   .grid_container {
-     display: grid;
-     grid-template-columns: repeat(5, 1fr);
-     grid-row-gap: 18px; 
-     grid-column-gap: 9px;
-    }
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-row-gap: 18px;
+    grid-column-gap: 9px;
+  }
 
-      .button_style {
-        color: #1F262C;
-        display: inline-block;
-        padding: 10px;
-        background-color: #EEF0F2;
-        border-radius: 5px;
-        border: none;
-        height: 52px;
-        width: 52px;
-        text-align: center;
-        font-weight: bold;
-      }
-      .button_style:focus {
-        background-color: #D3EAF8;
-        border-radius: 5px;
-        border: 1.5px solid #387FCF; 
+  .button_style {
+    color: #1f262c;
+    display: inline-block;
+    padding: 10px;
+    background-color: #eef0f2;
+    border-radius: 5px;
+    border: none;
+    height: 52px;
+    width: 52px;
+    text-align: center;
+    font-weight: bold;
+  }
+  .button_style:focus {
+    background-color: #d3eaf8;
+    border-radius: 5px;
+    border: 1.5px solid #387fcf;
+
       }
 `;
 
-const ReviewCards: React.FC<Props> = ({ onPressCard }) => {
+
+type reviewCardType = {
+  setQuizIndex: (index: number) => void;
+};
+
+const ReviewCards: React.FC<reviewCardType> = ({ setQuizIndex }) => {
+  const buttons = Array.from({ length: 5 }, (_, index) => (
+    <button
+      key={index}
+      onClick={() => setQuizIndex(index)}
+      className="button_style"
+    >
+      {index + 1}
+    </button>
+  ));
+
 
   return (
     <section css={reviewCardStyle}>
       <div className="content">
-      <h4>Review cards • /19</h4>
-        <div className="grid_container">
-            <button className="button_style" onClick={() => {onPressCard(0)}} >1</button>
-            <button className="button_style" onClick={() => {onPressCard(1)}} >2</button>
-            <button className="button_style" onClick={() => {onPressCard(2)}} >3</button>
-            <button className="button_style" onClick={() => {onPressCard(3)}} >4</button>
-            <button className="button_style" onClick={() => {onPressCard(4)}} >5</button>
-            <button className="button_style" onClick={() => {onPressCard(5)}} >6</button>
-            <button className="button_style" onClick={() => {onPressCard(6)}} >7</button>
-            <button className="button_style" onClick={() => {onPressCard(7)}} >8</button>
-            <button className="button_style" onClick={() => {onPressCard(8)}} >9</button>
-            <button className="button_style" onClick={() => {onPressCard(9)}} >10</button>
-            <button className="button_style" onClick={() => {onPressCard(10)}} >11</button>
-            <button className="button_style" onClick={() => {onPressCard(11)}} >12</button>
-            <button className="button_style" onClick={() => {onPressCard(12)}} >13</button>
-            <button className="button_style" onClick={() => {onPressCard(13)}} >14</button>
-            <button className="button_style" onClick={() => {onPressCard(14)}} >15</button>
-            <button className="button_style" onClick={() => {onPressCard(15)}} >16</button>
-            <button className="button_style" onClick={() => {onPressCard(16)}} >17</button>
-            <button className="button_style" onClick={() => {onPressCard(17)}} >18</button>
-            <button className="button_style" onClick={() => {onPressCard(18)}} >19</button>
-        </div>
+
+        <h4>Review cards • /19</h4>
+        <div className="grid_container">{buttons}</div>
+
       </div>
     </section>
   );
