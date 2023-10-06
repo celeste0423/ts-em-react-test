@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { css } from "@emotion/react";
+
+type Props = {
+  onPressCard: (index: number) => void;
+};
 
 const reviewCardStyle = css`
   :root {
@@ -11,7 +15,9 @@ const reviewCardStyle = css`
     --greyColor: #454545;
     --blackCardBackgroundColor: #19191980;
   }
+
   height: 100vb;
+
 
   .content {
     display: grid;
@@ -47,8 +53,10 @@ const reviewCardStyle = css`
     background-color: #d3eaf8;
     border-radius: 5px;
     border: 1.5px solid #387fcf;
-  }
+
+      }
 `;
+
 
 type reviewCardType = {
   setQuizIndex: (index: number) => void;
@@ -65,11 +73,14 @@ const ReviewCards: React.FC<reviewCardType> = ({ setQuizIndex }) => {
     </button>
   ));
 
+
   return (
     <section css={reviewCardStyle}>
       <div className="content">
+
         <h4>Review cards • /19</h4>
         <div className="grid_container">{buttons}</div>
+
       </div>
     </section>
   );

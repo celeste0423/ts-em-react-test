@@ -92,7 +92,7 @@ const globalStyle = css`
 function App() {
   return (
     <div className="App">
-      <Global styles={globalStyle} />
+      <Global styles={globalStyle} /> 
       <Navbar />
       <Router />
     </div>

@@ -36,6 +36,7 @@ const QuizPage: React.FC = () => {
         <QuizNavbar />
         <Questions question={quizData[quizIndex]} />
         <ReviewCards setQuizIndex={(index: number) => setQuizIndex(index)} />
+
       </div>
     </section>
   );
