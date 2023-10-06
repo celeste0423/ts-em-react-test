@@ -1,7 +1,6 @@
 import React from "react";
 import { css } from "@emotion/react";
 import logoImage from "../../assets/logo.svg";
-import smallLogoImage from "../../assets/logo-small.svg";
 import RadioToggle from "./RadioToggle";
 
 import liveTutorial from "../../assets/quizNavbar/livetutorial.svg";
@@ -24,9 +23,22 @@ const quizNavbarStyle = css`
   background-color: white;
   height: 100vb;
   width: 275px;
-
+  transition: all 0.2s ease-out;
+  box-shadow: 1px 1px 3px rgb(230, 230, 230);
+  z-index: 2;
+  text-overflow: clip;
+  white-space: nowrap;
+  
   .content {
     background: var(--greyColor);
+  }
+
+  .logo-title {
+    height: 30px;
+    margin-bottom: 3em;
+    object-position: left;
+    margin-left: -5px;
+    object-fit: none;
   }
 
   .radio-button {
@@ -38,7 +50,7 @@ const quizNavbarStyle = css`
     border-radius: 3px;
     transition: background-color 0.3s, color 0.3s;
   }
-
+  
   .radio-button.active {
     background-color: rgb(211, 234, 248);
     color: black;
@@ -54,20 +66,13 @@ const quizNavbarStyle = css`
     box-shadow: 1px 1px 5px gray;
     border-radius: 3px;
     margin-bottom: 1em;
-  }
-
-  .logo-title {
-    height: 35px;
-    margin-bottom: 3em;
-  }
-  .logo-small {
-    display: none;
+    margin-left: 1em;
   }
 
   nav {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: start;
+    margin-left: 2em;
   }
 
   .separating-line {
@@ -77,25 +82,22 @@ const quizNavbarStyle = css`
     margin-top: 20px;
     margin-bottom: 20px;
   }
-
+  
   .nav-menu li {
     margin-bottom: 10px;
   }
 
   .nav-menu img {
-    display: inline-flex;
-    align-self: center;
     height: 1.5em;
     width: 1.5em;
     margin-right: 1em;
-    top: 0.425em;
+    top: .425em;
     position: relative;
   }
 
   .nav-menu h1 {
     vertical-align: middle;
     display: inline-block;
-    allign-items: center;
     font-size: 15px;
   }
 
@@ -142,28 +144,69 @@ const quizNavbarStyle = css`
     bottom: 0;
   }
 
+  .separating-line, .subscribe-background {
+    transition: all 0.2s ease-out;
+  }
+  .nav-menu h1, .subscribe-menu, .toggle-border {
+    transition: all 0.2s ease-out;
+  }
+
   @media screen and (max-width: 1125px) {
+
     width: 75px;
-    box-shadow: 1px 1px 5px gray;
-
-    .nav-menu h1,
-    .subscribe-menu,
-    .toggle-border,
+    transition: all 0.2s ease-out;
+    box-shadow: 1px 1px 3px rgb(230, 230, 230);
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+    margin-left: -10px;
+    
     .logo-title {
-      display: none;
+      object-fit: none;
+      width: 40px;
     }
 
-    .logo-small {
-      display: block;
-      margin-bottom: 3em;
+    .nav-menu h1, .subscribe-menu, .toggle-border {
+      visibility: hidden;
     }
-
+    
     .separating-line {
       width: 30px;
     }
 
     .subscribe-background {
-      width: 75px;
+      width: 65px;
+    }
+
+    .separating-line, .subscribe-background {
+      transition: all 0.2s ease-out;
+    }
+  
+    :hover {
+      width: 275px;
+      margin-left: 0px;
+      transition: all 0.2s ease-out;
+
+      .logo-title {
+        width: 100%;
+      }
+
+      .nav-menu h1, .logo-title, .subscribe-menu, .toggle-border  {
+        visibility: visible;
+      }
+      
+      .separating-line {
+        width: 200px;
+      }
+  
+      .subscribe-background {
+        width: 275px;
+      }
+
+      .separating-line, .subscribe-background {
+        transition: all 0.2s ease-out;
+      }
+    
     }
   }
 `;
@@ -178,9 +221,6 @@ const QuizNavbar: React.FC = () => {
           <div>
             <li>
               <img src={logoImage} className="logo-title" />
-            </li>
-            <li>
-              <img src={smallLogoImage} className="logo-small" />
             </li>
           </div>
 
