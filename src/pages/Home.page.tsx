@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { css } from "@emotion/react";
+import { Link } from "react-router-dom";
 
 import brainDesktopImage from "../assets/brain-desktop.svg";
 import Question from "../components/Question";
@@ -20,7 +21,7 @@ const homePageStyle = css`
     grid-template-columns: 50% 50%;
     place-items: left;
     padding: 2rem;
-    margin: 90px 4rem 1rem 4rem;
+    margin: 0 4rem 1rem 4rem;
 
     .imageDiv {
       order: 2;
@@ -115,7 +116,9 @@ function HomePage() {
           </p>
 
           <div className="buttonDiv">
-            <button className="btn">Get started</button>
+            <Link to="/quiz">
+              <button className="btn">Get started</button>
+            </Link>
             <button className="btn subButton">Try now</button>
           </div>
         </div>
