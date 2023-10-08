@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { css } from "@emotion/react";
 import { Link } from "react-router-dom";
 
 import brainDesktopImage from "../assets/brain-desktop.svg";
+import Question from "../components/Question";
+import TestCards from "../components/TestCards";
 
 const homePageStyle = css`
   :root {
@@ -97,6 +99,7 @@ const homePageStyle = css`
 `;
 
 function HomePage() {
+  const [selectedQuestionIdx, setSelectedQuestionIdx] = useState(0);
   return (
     <section css={homePageStyle} className="getStarted">
       <div className="contentGrid grid">
@@ -120,8 +123,35 @@ function HomePage() {
           </div>
         </div>
       </div>
+
+      <Question
+        questionNumber={selectedQuestionIdx}
+        // testQuestion={`A 75-year-old man presents to Accident and Emergency following a week of productive cough, fever and shortness of breath. He has not had any foreign travel, however is a chronic smoker with a 15 pack/year history.`}
+        testQuestion={"This is a sample test question"}
+        options={[
+          "Reduced vocal resonance and dull percussion note",
+          "Hyper-resonant percussion note and tracheal deviation to the left",
+          "Increased tactile vocal fremitus and dull percussion note",
+          "Increased vocal resonance and fine end inspiratory crepitations",
+        ]}
+        correctAnswerIndex={0}
+      />
+
+      <TestCards onPressCard={(index) => setSelectedQuestionIdx(index)} />
     </section>
   );
 }
+
+// const testQuestion = `A 75-year-old man presents to Accident and Emergency following a week of productive cough, fever and shortness of breath. He has not had any foreign travel, however is a chronic smoker with a 15 pack/year history.
+
+// Which of the following findings is most likely to be found on examination of this patient’s chest?`;
+
+// const options = [
+// "Reduced vocal resonance and dull percussion note",
+// "Hyper-resonant percussion note and tracheal deviation to the left",
+// "Increased tactile vocal fremitus and dull percussion note",
+// "Increased vocal resonance and fine end inspiratory crepitations",
+// ];
+// const correctAnswerIndex = 0;
 
 export default HomePage;
