@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { css } from "@emotion/react";
 
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
@@ -78,12 +78,14 @@ const reviewCardStyle = css`
 `;
 
 type reviewCardType = {
+  quizIndex: number;
   setQuizIndex: (index: number) => void;
   toggleReviewCard: boolean;
   setToggleReviewCard: (bool: boolean) => void;
 };
 
 const ReviewCards: React.FC<reviewCardType> = ({
+  quizIndex,
   setQuizIndex,
   toggleReviewCard,
   setToggleReviewCard,
@@ -91,12 +93,15 @@ const ReviewCards: React.FC<reviewCardType> = ({
   const buttons = Array.from({ length: 5 }, (_, index) => (
     <button
       key={index}
+      ref={(element) => index === quizIndex && element && element.focus()}
       onClick={() => setQuizIndex(index)}
       className="button_style"
     >
       {index + 1}
     </button>
   ));
+
+  useEffect(() => {});
 
   return (
     <section css={reviewCardStyle}>
@@ -116,7 +121,7 @@ const ReviewCards: React.FC<reviewCardType> = ({
           )}
         </div>
 
-        <h4>Review cards • /19</h4>
+        <h4>Review cards •{quizIndex + 1}/5</h4>
         <div className="grid_container">{buttons}</div>
       </div>
     </section>

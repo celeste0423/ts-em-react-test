@@ -45,7 +45,7 @@ const quizPageStyle = css`
 const QuizPage: React.FC = () => {
   const [quizIndex, setQuizIndex] = useState<number>(0);
 
-  const [toggleReviewCard, setToggleReviewCard] = useState<boolean>(false);
+  const [toggleReviewCard, setToggleReviewCard] = useState<boolean>(true);
 
   return (
     <section css={quizPageStyle}>
@@ -60,6 +60,7 @@ const QuizPage: React.FC = () => {
           }`}
         >
           <ReviewCards
+            quizIndex={quizIndex}
             setQuizIndex={(index: number) => setQuizIndex(index)}
             toggleReviewCard={toggleReviewCard}
             setToggleReviewCard={(bool: boolean) => setToggleReviewCard(bool)}
