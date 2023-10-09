@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { css } from "@emotion/react";
 import { Link } from "react-router-dom";
 import AnswerCard from "./AnswerCard";
@@ -142,6 +142,11 @@ const Questions: React.FC<QuestionType> = ({ question }) => {
   const [radioIndex, setRadioIndex] = useState<number | null>(null);
 
   const [checkAnswer, setCheckAnswer] = useState<boolean>(false);
+
+  useEffect(() => {
+    setRadioIndex(null);
+    setCheckAnswer(false);
+  }, [question.questionNumber]);
 
   //UI ------------------------------------------------------------------
   function TitleDiv() {
