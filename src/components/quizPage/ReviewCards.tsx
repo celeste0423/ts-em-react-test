@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { css } from "@emotion/react";
 
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+
 type Props = {
   onPressCard: (index: number) => void;
 };
@@ -18,9 +20,10 @@ const reviewCardStyle = css`
 
   height: 100vb;
 
-
   .content {
     display: grid;
+    overflow: visible;
+    position: relative;
     width: 100%;
 
     margin-top: 85px;
@@ -29,6 +32,24 @@ const reviewCardStyle = css`
     padding: 1rem 2rem 60% 2rem;
     border-radius: 0.3rem;
     box-shadow: -2px 1px 4px rgba(0, 0, 0, 0.101);
+
+    .arrow_button {
+      position: absolute;
+      background: var(--whiteColor);
+      box-shadow: -2px 1px 4px rgba(0, 0, 0, 0.101);
+      border-radius: 1rem;
+      width: 2rem;
+      height: 2rem;
+      top: 3rem;
+      left: -1rem;
+      padding-top: 0.4rem;
+      padding-left: 0.25rem;
+    }
+    @media screen and (min-width: 1125px) {
+      .arrow_button {
+        display: none;
+      }
+    }
   }
   .grid_container {
     display: grid;
@@ -53,16 +74,20 @@ const reviewCardStyle = css`
     background-color: #d3eaf8;
     border-radius: 5px;
     border: 1.5px solid #387fcf;
-
-      }
+  }
 `;
-
 
 type reviewCardType = {
   setQuizIndex: (index: number) => void;
+  toggleReviewCard: boolean;
+  setToggleReviewCard: (bool: boolean) => void;
 };
 
-const ReviewCards: React.FC<reviewCardType> = ({ setQuizIndex }) => {
+const ReviewCards: React.FC<reviewCardType> = ({
+  setQuizIndex,
+  toggleReviewCard,
+  setToggleReviewCard,
+}) => {
   const buttons = Array.from({ length: 5 }, (_, index) => (
     <button
       key={index}
@@ -73,14 +98,26 @@ const ReviewCards: React.FC<reviewCardType> = ({ setQuizIndex }) => {
     </button>
   ));
 
-
   return (
     <section css={reviewCardStyle}>
       <div className="content">
+        <div
+          className="arrow_button"
+          onClick={
+            toggleReviewCard
+              ? () => setToggleReviewCard(false)
+              : () => setToggleReviewCard(true)
+          }
+        >
+          {!toggleReviewCard ? (
+            <IoIosArrowBack size="20" />
+          ) : (
+            <IoIosArrowForward size="20" />
+          )}
+        </div>
 
         <h4>Review cards • /19</h4>
         <div className="grid_container">{buttons}</div>
-
       </div>
     </section>
   );

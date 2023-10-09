@@ -15,14 +15,29 @@ const quizPageStyle = css`
     --greyColor: #454545;
     --blackCardBackgroundColor: #19191980;
   }
+  .content {
+    position: relative;
+    overflow: hidden;
 
-  .contentGrid {
-    grid-template-columns: 300px 1fr 350px;
-  }
-
-  @media screen and (max-width: 1125px) {
     .contentGrid {
-      grid-template-columns: 75px 1fr 0px;
+      grid-template-columns: 300px 1fr;
+      height: 100%;
+    }
+
+    @media screen and (max-width: 1125px) {
+      .contentGrid {
+        grid-template-columns: 75px 1fr;
+      }
+      .reviewCardDiv {
+        transition: all 0.2s ease-out;
+        position: absolute;
+        right: -350px;
+      }
+      .activeReviewCardDiv {
+        transition: all 0.2s ease-out;
+        position: absolute;
+        right: 0px;
+      }
     }
   }
 `;
@@ -30,13 +45,26 @@ const quizPageStyle = css`
 const QuizPage: React.FC = () => {
   const [quizIndex, setQuizIndex] = useState<number>(0);
 
+  const [toggleReviewCard, setToggleReviewCard] = useState<boolean>(false);
+
   return (
     <section css={quizPageStyle}>
-      <div className="contentGrid grid">
-        <QuizNavbar />
-        <Questions question={quizData[quizIndex]} />
-        <ReviewCards setQuizIndex={(index: number) => setQuizIndex(index)} />
-
+      <div className="content flex">
+        <div className="contentGrid grid">
+          <QuizNavbar />
+          <Questions question={quizData[quizIndex]} />
+        </div>
+        <div
+          className={`flex ${
+            toggleReviewCard ? "activeReviewCardDiv" : "reviewCardDiv"
+          }`}
+        >
+          <ReviewCards
+            setQuizIndex={(index: number) => setQuizIndex(index)}
+            toggleReviewCard={toggleReviewCard}
+            setToggleReviewCard={(bool: boolean) => setToggleReviewCard(bool)}
+          />
+        </div>
       </div>
     </section>
   );
