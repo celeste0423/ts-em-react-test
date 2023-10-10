@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import AnswerCard from "./AnswerCard";
 
 import { MdTextFields } from "react-icons/md";
+import { useAtom } from "jotai";
+import { quizProgressAtom } from "../../store/Atom";
 
 const questionsStyle = css`
   :root {
@@ -148,6 +150,18 @@ const Questions: React.FC<QuestionType> = ({ question }) => {
     setCheckAnswer(false);
   }, [question.questionNumber]);
 
+  const [quizProgress, setQuizProgress] = useAtom(quizProgressAtom);
+
+  const incrementQuizProgress = (quizIndex: number, isCorrect: boolean) => {
+    const currentProgress = quizProgress;
+
+    const newEntry: [number, boolean] = [quizIndex, isCorrect];
+
+    const updatedProgress = [...currentProgress, newEntry];
+
+    setQuizProgress(updatedProgress);
+  };
+
   //UI ------------------------------------------------------------------
   function TitleDiv() {
     return (
@@ -196,6 +210,7 @@ const Questions: React.FC<QuestionType> = ({ question }) => {
           {question.indexStrings.map((indexString, index) => {
             return (
               <div
+                key={index + 10}
                 className={!checkAnswer ? "answerCard" : ""}
                 onClick={
                   !checkAnswer
@@ -240,6 +255,14 @@ const Questions: React.FC<QuestionType> = ({ question }) => {
   }
 
   function ButtonDiv() {
+    function readAtom(
+      quizProgressAtom: import("jotai").PrimitiveAtom<[number, boolean][]> & {
+        init: [number, boolean][];
+      }
+    ): any {
+      throw new Error("Function not implemented.");
+    }
+
     return (
       <div className="buttonDiv flex">
         <Link to="/">
@@ -248,6 +271,11 @@ const Questions: React.FC<QuestionType> = ({ question }) => {
         <button
           onClick={() => {
             setCheckAnswer(true);
+            incrementQuizProgress(
+              question.questionNumber,
+              question.answerIndex === radioIndex
+            );
+            console.log("버튼");
           }}
           className="btn showAnsBtn"
         >

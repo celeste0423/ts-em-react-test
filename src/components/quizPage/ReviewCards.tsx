@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { css } from "@emotion/react";
 
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { quizProgressAtom } from "../../store/Atom";
+import { useAtom } from "jotai";
 
 type Props = {
   onPressCard: (index: number) => void;
@@ -16,6 +18,10 @@ const reviewCardStyle = css`
     --blackColor: #000000;
     --greyColor: #454545;
     --blackCardBackgroundColor: #19191980;
+    --greenColor: #4ad9bc;
+    --lightGreenColor: rgba(74, 217, 188, 0.15);
+    --redColor: #ff5c5c;
+    --lightRedColor: rgba(255, 92, 92, 0.15);
   }
 
   height: 100vb;
@@ -50,19 +56,23 @@ const reviewCardStyle = css`
         display: none;
       }
     }
+
+    .quizNumber {
+      padding-bottom: 1rem;
+    }
   }
   .grid_container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-row-gap: 18px;
     grid-column-gap: 9px;
   }
 
-  .button_style {
+  .indexButton {
+    background-color: #eef0f2;
     color: #1f262c;
     display: inline-block;
     padding: 10px;
-    background-color: #eef0f2;
     border-radius: 5px;
     border: none;
     height: 52px;
@@ -70,10 +80,34 @@ const reviewCardStyle = css`
     text-align: center;
     font-weight: bold;
   }
-  .button_style:focus {
+  .activeIndexButton {
     background-color: #d3eaf8;
     border-radius: 5px;
     border: 1.5px solid #387fcf;
+  }
+  .rightIndexButton {
+    background: rgba(74, 217, 188, 0.4);
+    color: #1f262c;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    height: 52px;
+    width: 52px;
+    text-align: center;
+    font-weight: bold;
+  }
+  .wrongIndexButton {
+    background: rgba(255, 92, 92, 0.4);
+    color: #1f262c;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    height: 52px;
+    width: 52px;
+    text-align: center;
+    font-weight: bold;
   }
 `;
 
@@ -82,6 +116,7 @@ type reviewCardType = {
   setQuizIndex: (index: number) => void;
   toggleReviewCard: boolean;
   setToggleReviewCard: (bool: boolean) => void;
+  quizLength: number;
 };
 
 const ReviewCards: React.FC<reviewCardType> = ({
@@ -89,19 +124,40 @@ const ReviewCards: React.FC<reviewCardType> = ({
   setQuizIndex,
   toggleReviewCard,
   setToggleReviewCard,
+  quizLength,
 }) => {
-  const buttons = Array.from({ length: 5 }, (_, index) => (
-    <button
-      key={index}
-      ref={(element) => index === quizIndex && element && element.focus()}
-      onClick={() => setQuizIndex(index)}
-      className="button_style"
-    >
-      {index + 1}
-    </button>
-  ));
+  const [quizProgress, setQuizProgress] = useAtom(quizProgressAtom);
 
-  useEffect(() => {});
+  const buttons = Array.from({ length: quizLength }, (_, index) => {
+    let matchingQuiz = quizProgress.find(
+      ([quizNumber, _]) => quizNumber - 1 === index
+    );
+    let isCorrect: boolean = false;
+    if (matchingQuiz) {
+      // console.log(matchingQuiz[1]);
+      isCorrect = matchingQuiz[1];
+    }
+    return (
+      <button
+        key={index}
+        onClick={() => {
+          setQuizIndex(index);
+          // console.log(quizProgress);
+        }}
+        className={` ${
+          quizIndex === index
+            ? "activeIndexButton"
+            : !matchingQuiz
+            ? "indexButton"
+            : isCorrect
+            ? "rightIndexButton"
+            : "wrongIndexButton"
+        }`}
+      >
+        {index + 1}
+      </button>
+    );
+  });
 
   return (
     <section css={reviewCardStyle}>
@@ -121,7 +177,12 @@ const ReviewCards: React.FC<reviewCardType> = ({
           )}
         </div>
 
-        <h4>Review cards •{quizIndex + 1}/5</h4>
+        <h4 className="quizNumber">
+          Review cards •{quizIndex + 1}/{quizLength}
+        </h4>
+
+        <div className="progressBar"></div>
+
         <div className="grid_container">{buttons}</div>
       </div>
     </section>
@@ -129,3 +190,12 @@ const ReviewCards: React.FC<reviewCardType> = ({
 };
 
 export default ReviewCards;
+
+function readAtom(
+  quizProgressAtom: import("jotai").PrimitiveAtom<[number, boolean][]> & {
+    init: [number, boolean][];
+  }
+): [any, any] {
+  throw new Error("Function not implemented.");
+}
+

@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 import QuizNavbar from "../components/quizPage/QuizNavbar";
 import Questions from "../components/quizPage/Questions";
 import ReviewCards from "../components/quizPage/ReviewCards";
-import quizData from "../assets/dataSet";
+import quizData from "../store/dataSet";
 
 const quizPageStyle = css`
   :root {
@@ -17,7 +17,6 @@ const quizPageStyle = css`
   }
   .content {
     position: relative;
-    overflow: hidden;
 
     .contentGrid {
       grid-template-columns: 300px 1fr;
@@ -31,7 +30,7 @@ const quizPageStyle = css`
       .reviewCardDiv {
         transition: all 0.2s ease-out;
         position: absolute;
-        right: -350px;
+        right: -290px;
       }
       .activeReviewCardDiv {
         transition: all 0.2s ease-out;
@@ -47,10 +46,15 @@ const QuizPage: React.FC = () => {
 
   const [toggleReviewCard, setToggleReviewCard] = useState<boolean>(true);
 
+  const quizLength = quizData.length;
+
   return (
     <section css={quizPageStyle}>
       <div className="content flex">
-        <div className="contentGrid grid">
+        <div
+          className="contentGrid grid"
+          onClick={() => setToggleReviewCard(false)}
+        >
           <QuizNavbar />
           <Questions question={quizData[quizIndex]} />
         </div>
@@ -64,6 +68,7 @@ const QuizPage: React.FC = () => {
             setQuizIndex={(index: number) => setQuizIndex(index)}
             toggleReviewCard={toggleReviewCard}
             setToggleReviewCard={(bool: boolean) => setToggleReviewCard(bool)}
+            quizLength={quizLength}
           />
         </div>
       </div>
