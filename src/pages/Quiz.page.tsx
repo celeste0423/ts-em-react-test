@@ -20,7 +20,6 @@ const quizPageStyle = css`
 
     .contentGrid {
       grid-template-columns: 300px 1fr;
-      height: 100%;
     }
 
     @media screen and (max-width: 1125px) {

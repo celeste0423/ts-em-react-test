@@ -22,6 +22,7 @@ const questionsStyle = css`
   padding: 3rem 2rem 2rem 2rem;
 
   .content {
+    height: 100%;
     .titleDiv {
       margin-bottom: 1rem;
       justify-content: space-between;
@@ -78,11 +79,16 @@ const questionsStyle = css`
 
     .questionsDiv {
       background: var(--whiteColor);
+      position: relative;
       padding: 1rem 2rem 1rem 2rem;
       border-radius: 0.3rem;
       box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.101);
+      height: calc(100% - 4rem);
 
       .questionContentDiv {
+        overflow-y: scroll;
+        height: calc(100% - 5rem);
+        padding: 0 6px 0 6px;
         .questionNumberDiv {
           margin-bottom: 1.5rem;
         }
@@ -94,15 +100,22 @@ const questionsStyle = css`
             cursor: pointer;
           }
         }
+        &::-webkit-scrollbar {
+          width: 4px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: lightgray;
+        }
       }
 
       .line {
         border-bottom: 1px solid lightgray;
-        margin: 2rem 0 2rem 0;
+        margin-bottom: 1rem;
       }
 
       .buttonDiv {
         justify-content: end;
+        height: 5rem;
         .finishBtn {
           margin-right: 0.5rem;
           color: var(--primaryColor);

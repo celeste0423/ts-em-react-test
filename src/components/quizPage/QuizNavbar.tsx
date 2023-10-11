@@ -21,7 +21,6 @@ const quizNavbarStyle = css`
   }
 
   background-color: white;
-  margin-top: 20px;
   height: 100vb;
   width: 275px;
   transition: all 0.2s ease-out;
@@ -40,6 +39,7 @@ const quizNavbarStyle = css`
     object-position: left;
     margin-left: -5px;
     object-fit: none;
+    margin-top: 2rem;
   }
 
   .radio-button {
