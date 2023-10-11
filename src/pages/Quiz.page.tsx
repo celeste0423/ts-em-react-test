@@ -56,7 +56,11 @@ const QuizPage: React.FC = () => {
           onClick={() => setToggleReviewCard(false)}
         >
           <QuizNavbar />
-          <Questions question={quizData[quizIndex]} />
+          <Questions
+            question={quizData[quizIndex]}
+            quizIndex={quizIndex}
+            setQuizIndex={(index: number) => setQuizIndex(index)}
+          />
         </div>
         <div
           className={`flex ${

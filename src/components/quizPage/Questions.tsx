@@ -124,9 +124,15 @@ type QuestionCompType = {
 };
 type QuestionType = {
   question: QuestionCompType;
+  quizIndex: number;
+  setQuizIndex: (index: number) => void;
 };
 
-const Questions: React.FC<QuestionType> = ({ question }) => {
+const Questions: React.FC<QuestionType> = ({
+  question,
+  quizIndex,
+  setQuizIndex,
+}) => {
   const [textSizePopup, setTextSizePopup] = useState<boolean>(false);
   const openPop = () => {
     !textSizePopup ? setTextSizePopup(true) : setTextSizePopup(false);
@@ -268,19 +274,29 @@ const Questions: React.FC<QuestionType> = ({ question }) => {
         <Link to="/">
           <button className="btn finishBtn">Finish Test</button>
         </Link>
-        <button
-          onClick={() => {
-            setCheckAnswer(true);
-            incrementQuizProgress(
-              question.questionNumber,
-              question.answerIndex === radioIndex
-            );
-            console.log("버튼");
-          }}
-          className="btn showAnsBtn"
-        >
-          Show Answer
-        </button>
+        {!checkAnswer ? (
+          <button
+            onClick={() => {
+              setCheckAnswer(true);
+              incrementQuizProgress(
+                question.questionNumber,
+                question.answerIndex === radioIndex
+              );
+            }}
+            className="btn showAnsBtn"
+          >
+            Show Answer
+          </button>
+        ) : (
+          <button
+            onClick={() => {
+              setQuizIndex(quizIndex++);
+            }}
+            className="btn showAnsBtn"
+          >
+            Next
+          </button>
+        )}
       </div>
     );
   }

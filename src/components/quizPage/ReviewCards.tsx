@@ -20,6 +20,10 @@ const ReviewCards: React.FC<reviewCardType> = ({
   setToggleReviewCard,
   quizLength,
 }) => {
+
+  const [quizProgress, setQuizProgress] = useAtom(quizProgressAtom);
+  const rightCount = quizProgress.filter(([_, isCorrect]) => isCorrect).length;
+
   const reviewCardStyle = css`
     :root {
       --primaryColor: #256af4;
@@ -79,20 +83,24 @@ const ReviewCards: React.FC<reviewCardType> = ({
         .progressBarRight {
           background: #4ad9bc;
           height: 100%;
-          width: ${20 * 1}px;
+          width: ${(100 / quizLength) * rightCount}%;
           border-top-left-radius: 1rem;
           border-bottom-left-radius: 1rem;
-          border-top-right-radius: ${false ? "1rem" : null};
-          border-bottom-right-radius: ${false ? "1rem" : null};
+          border-top-right-radius: ${rightCount == quizProgress.length
+            ? "1rem"
+            : null};
+          border-bottom-right-radius: ${rightCount == quizProgress.length
+            ? "1rem"
+            : null};
         }
         .progressBarWrong {
           height: 100%;
           background: #ff5c5c;
-          width: ${20 * 1}px;
+          width: ${(100 / quizLength) * (quizProgress.length - rightCount)}%;
           border-top-right-radius: 1rem;
           border-bottom-right-radius: 1rem;
-          border-top-left-radius: ${false ? "1rem" : null};
-          border-bottom-left-radius: ${false ? "1rem" : null};
+          border-top-left-radius: ${rightCount === 0 ? "1rem" : null};
+          border-bottom-left-radius: ${rightCount === 0 ? "1rem" : null};
         }
       }
     }
@@ -146,7 +154,7 @@ const ReviewCards: React.FC<reviewCardType> = ({
     }
   `;
 
-  const [quizProgress, setQuizProgress] = useAtom(quizProgressAtom);
+  
 
   const buttons = Array.from({ length: quizLength }, (_, index) => {
     let matchingQuiz = quizProgress.find(
