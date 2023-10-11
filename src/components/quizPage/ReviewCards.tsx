@@ -113,11 +113,11 @@ const ReviewCards: React.FC<reviewCardType> = ({
 
     .indexButton {
       background-color: #eef0f2;
+      border-radius: 5px;
+      border: none;
       color: #1f262c;
       display: inline-block;
       padding: 10px;
-      border-radius: 5px;
-      border: none;
       height: 52px;
       width: 52px;
       text-align: center;
@@ -127,6 +127,13 @@ const ReviewCards: React.FC<reviewCardType> = ({
       background-color: #d3eaf8;
       border-radius: 5px;
       border: 1.5px solid #387fcf;
+      color: #1f262c;
+      display: inline-block;
+      padding: 10px;
+      height: 52px;
+      width: 52px;
+      text-align: center;
+      font-weight: bold;
     }
     .rightIndexButton {
       background: rgba(74, 217, 188, 0.4);
