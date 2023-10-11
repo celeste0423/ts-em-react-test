@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import brainDesktopImage from "../assets/brain-desktop.svg";
 import Question from "../components/Question";
 import TestCards from "../components/TestCards";
+import Navbar from "../components/Navbar";
 
 const homePageStyle = css`
   :root {
@@ -102,6 +103,8 @@ function HomePage() {
   const [selectedQuestionIdx, setSelectedQuestionIdx] = useState(0);
   return (
     <section css={homePageStyle} className="getStarted">
+      <Navbar />
+
       <div className="contentGrid grid">
         <div className="imageDiv">
           <img src={brainDesktopImage} alt="" />

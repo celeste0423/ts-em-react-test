@@ -2,6 +2,7 @@ import React from "react";
 import HomePage from "./pages/Home.page";
 import { Global, css } from "@emotion/react";
 import Navbar from "./components/Navbar";
+import { Route, Routes } from "react-router-dom";
 import Router from "./Router";
 import QuizPage from "./pages/Quiz.page";
 
@@ -92,8 +93,7 @@ const globalStyle = css`
 function App() {
   return (
     <div className="App">
-      <Global styles={globalStyle} /> 
-      <Navbar />
+      <Global styles={globalStyle} />
       <Router />
     </div>
   );

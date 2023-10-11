@@ -6,7 +6,6 @@ const RootLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <main
       css={css`
-        margin-top: 90px;
         overflow-x: hidden;
       `}
     >

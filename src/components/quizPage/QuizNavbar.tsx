@@ -21,6 +21,7 @@ const quizNavbarStyle = css`
   }
 
   background-color: white;
+  margin-top: 20px;
   height: 100vb;
   width: 275px;
   transition: all 0.2s ease-out;
@@ -28,7 +29,7 @@ const quizNavbarStyle = css`
   z-index: 2;
   text-overflow: clip;
   white-space: nowrap;
-  
+
   .content {
     background: var(--greyColor);
   }
@@ -50,7 +51,7 @@ const quizNavbarStyle = css`
     border-radius: 3px;
     transition: background-color 0.3s, color 0.3s;
   }
-  
+
   .radio-button.active {
     background-color: rgb(211, 234, 248);
     color: black;
@@ -82,7 +83,7 @@ const quizNavbarStyle = css`
     margin-top: 20px;
     margin-bottom: 20px;
   }
-  
+
   .nav-menu li {
     margin-bottom: 10px;
   }
@@ -91,7 +92,7 @@ const quizNavbarStyle = css`
     height: 1.5em;
     width: 1.5em;
     margin-right: 1em;
-    top: .425em;
+    top: 0.425em;
     position: relative;
   }
 
@@ -144,15 +145,17 @@ const quizNavbarStyle = css`
     bottom: 0;
   }
 
-  .separating-line, .subscribe-background {
+  .separating-line,
+  .subscribe-background {
     transition: all 0.2s ease-out;
   }
-  .nav-menu h1, .subscribe-menu, .toggle-border {
+  .nav-menu h1,
+  .subscribe-menu,
+  .toggle-border {
     transition: all 0.2s ease-out;
   }
 
   @media screen and (max-width: 1125px) {
-
     width: 75px;
     transition: all 0.2s ease-out;
     box-shadow: 1px 1px 3px rgb(230, 230, 230);
@@ -160,16 +163,18 @@ const quizNavbarStyle = css`
     text-overflow: clip;
     white-space: nowrap;
     margin-left: -10px;
-    
+
     .logo-title {
       object-fit: none;
       width: 40px;
     }
 
-    .nav-menu h1, .subscribe-menu, .toggle-border {
+    .nav-menu h1,
+    .subscribe-menu,
+    .toggle-border {
       visibility: hidden;
     }
-    
+
     .separating-line {
       width: 30px;
     }
@@ -178,10 +183,11 @@ const quizNavbarStyle = css`
       width: 65px;
     }
 
-    .separating-line, .subscribe-background {
+    .separating-line,
+    .subscribe-background {
       transition: all 0.2s ease-out;
     }
-  
+
     :hover {
       width: 275px;
       margin-left: 0px;
@@ -191,22 +197,25 @@ const quizNavbarStyle = css`
         width: 100%;
       }
 
-      .nav-menu h1, .logo-title, .subscribe-menu, .toggle-border  {
+      .nav-menu h1,
+      .logo-title,
+      .subscribe-menu,
+      .toggle-border {
         visibility: visible;
       }
-      
+
       .separating-line {
         width: 200px;
       }
-  
+
       .subscribe-background {
         width: 275px;
       }
 
-      .separating-line, .subscribe-background {
+      .separating-line,
+      .subscribe-background {
         transition: all 0.2s ease-out;
       }
-    
     }
   }
 `;

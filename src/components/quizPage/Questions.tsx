@@ -261,14 +261,6 @@ const Questions: React.FC<QuestionType> = ({
   }
 
   function ButtonDiv() {
-    function readAtom(
-      quizProgressAtom: import("jotai").PrimitiveAtom<[number, boolean][]> & {
-        init: [number, boolean][];
-      }
-    ): any {
-      throw new Error("Function not implemented.");
-    }
-
     return (
       <div className="buttonDiv flex">
         <Link to="/">
