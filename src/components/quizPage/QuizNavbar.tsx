@@ -21,7 +21,7 @@ const quizNavbarStyle = css`
   }
 
   background-color: white;
-  height: 100vb;
+  height: 100vh;
   width: 275px;
   transition: all 0.2s ease-out;
   box-shadow: 1px 1px 3px rgb(230, 230, 230);
@@ -118,7 +118,7 @@ const quizNavbarStyle = css`
 
   .subscribe-menu h2 {
     font-size: 12px;
-    font-weight: light;
+    font-weight: lighter;
     color: rgb(100, 100, 100);
     margin-bottom: 20px;
   }
@@ -220,6 +220,28 @@ const quizNavbarStyle = css`
   }
 `;
 
+const navOptions = [
+  { title: 'Anatomy Questions', isQuescard: false, id: 1 },
+  { title: 'Cardiology Questions', isQuescard: false, id: 2 },
+  { title: 'Emergency Questions', isQuescard: false, id: 3 },
+  { title: 'Neurology Questions', isQuescard: false, id: 4 },
+  { title: 'Paediatric Questions', isQuescard: false, id: 5 },
+  { title: 'Physiology Questions', isQuescard: false, id: 6 },
+  { title: 'Clinical Questions', isQuescard: false, id: 7 },
+  { title: 'Pre-clinical Questions', isQuescard: false, id: 8 },
+  { title: 'Clinical Quescards', isQuescard: true, id: 9 },
+  { title: 'Pre-Clinical Quescards', isQuescard: true, id: 10 },
+];
+
+const navOptionItems = navOptions.map((option) => (
+  <li key={option.id}>
+    <a href="pricing.html">
+      <img src={option.isQuescard ? quesCard : question} alt={`icon ${option.id}`} />
+      <h1>{option.title}</h1>
+    </a>
+  </li>
+));
+
 const options = ["QBank", "OSCE"];
 
 const QuizNavbar: React.FC = () => {
@@ -239,72 +261,13 @@ const QuizNavbar: React.FC = () => {
 
           <div className="nav-menu">
             <li>
-              <img src={liveTutorial} alt="icon 1"/>
+              <img src={liveTutorial} alt="icon 0"/>
               <a href="products.html">
                 <h1>Live tutorials</h1>
               </a>
             </li>
             <div className="separating-line"></div>
-            <li>
-              <a href="pricing.html">
-                <img src={question} alt="icon 2"/>
-                <h1>Anatomy Questions</h1>
-              </a>
-            </li>
-            <li>
-              <a href="pricing.html">
-                <img src={question} alt="icon 3"/>
-                <h1>Cardiology Questions</h1>
-              </a>
-            </li>
-            <li>
-              <a href="pricing.html">
-                <img src={question} alt="icon 4"/>
-                <h1>Emergency Questions</h1>
-              </a>
-            </li>
-            <li>
-              <a href="pricing.html">
-                <img src={question} alt="icon 5"/>
-                <h1>Neurology Questions</h1>
-              </a>
-            </li>
-            <li>
-              <a href="pricing.html">
-                <img src={question} alt="icon 6"/>
-                <h1>Paediatric Questions</h1>
-              </a>
-            </li>
-            <li>
-              <a href="pricing.html">
-                <img src={question} alt="icon 7"/>
-                <h1>Physiology Questions</h1>
-              </a>
-            </li>
-            <li>
-              <a href="pricing.html">
-                <img src={question} alt="icon 8"/>
-                <h1>Clinical Questions</h1>
-              </a>
-            </li>
-            <li>
-              <a href="pricing.html">
-                <img src={question} alt="icon 9"/>
-                <h1>Pre-Clinical Questions</h1>
-              </a>
-            </li>
-            <li>
-              <a href="pricing.html">
-                <img src={quesCard} alt="icon 10"/>
-                <h1>Clinical Quescards</h1>
-              </a>
-            </li>
-            <li>
-              <a href="pricing.html">
-                <img src={quesCard} alt="icon 11"/>
-                <h1>Pre-Clinical Quescards</h1>
-              </a>
-            </li>
+            {navOptionItems}
             <div className="separating-line"></div>
           </div>
 
