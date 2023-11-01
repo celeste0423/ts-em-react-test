@@ -99,7 +99,7 @@ const homePageStyle = css`
   }
 `;
 
-function HomePage() {
+const HomePage: React.FC = () => {
   const [selectedQuestionIdx, setSelectedQuestionIdx] = useState(0);
   return (
     <section css={homePageStyle} className="getStarted">
@@ -127,7 +127,7 @@ function HomePage() {
         </div>
       </div>
 
-      <Question
+      {/* <Question
         questionNumber={selectedQuestionIdx}
         // testQuestion={`A 75-year-old man presents to Accident and Emergency following a week of productive cough, fever and shortness of breath. He has not had any foreign travel, however is a chronic smoker with a 15 pack/year history.`}
         testQuestion={"This is a sample test question"}
@@ -140,10 +140,10 @@ function HomePage() {
         correctAnswerIndex={0}
       />
 
-      <TestCards onPressCard={(index) => setSelectedQuestionIdx(index)} />
+      <TestCards onPressCard={(index) => setSelectedQuestionIdx(index)} /> */}
     </section>
   );
-}
+};
 
 // const testQuestion = `A 75-year-old man presents to Accident and Emergency following a week of productive cough, fever and shortness of breath. He has not had any foreign travel, however is a chronic smoker with a 15 pack/year history.
 

@@ -173,7 +173,7 @@ function Navbar() {
             </li>
           </ul>
           <div className="buttonDiv">
-            <a href="#" className="loginLink">
+            <a href="/login" className="loginLink">
               Log in
             </a>
             <button className="btn">
