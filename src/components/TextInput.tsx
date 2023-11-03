@@ -16,15 +16,15 @@ function TextInput({
   errorMessage,
   onUpdate,
 }: TextInputCompTypes) {
-  const [onFocus, setOnFocus] = useState<Boolean>(false);
+  const [onFocus, setOnFocus] = useState<boolean>(false);
 
   const textInputStyle = css`
     position: relative;
 
     .placeholder {
       position: absolute;
-      top: ${onFocus ? 0 : "10px"};
-      font-size: ${onFocus ? "13px" : "19px"};
+      top: ${onFocus || string ? 0 : "10px"};
+      font-size: ${onFocus || string ? "13px" : "19px"};
       transition: top 0.3s, font-size 0.3s;
       margin: 10px;
       color: ${errorMessage ? "red" : "#888888"};

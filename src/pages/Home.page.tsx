@@ -119,7 +119,7 @@ const HomePage: React.FC = () => {
           </p>
 
           <div className="buttonDiv">
-            <Link to="/quiz">
+            <Link to="/login">
               <button className="btn">Get started</button>
             </Link>
             <button className="btn subButton">Try now</button>

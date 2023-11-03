@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 import logoImage from "../assets/logo-small.svg";
 import TextInput from "../components/TextInput";
+import { Link } from "react-router-dom";
 
 const loginPageStyle = css`
   :root {
@@ -55,7 +56,51 @@ const loginPageStyle = css`
 
         .content {
           width: 100%;
+
+          .contentRow {
+            padding: 1rem;
+            justify-content: space-between;
+
+            .rememberMe {
+              input {
+                width: 18px;
+                height: 18px;
+                border-radius: 5px;
+              }
+              p {
+                padding-left: 20px;
+              }
+            }
+          }
+          .loginButton {
+            margin-top: 2rem;
+            background-color: var(--primaryColor);
+            color: white;
+            font-weight: 600;
+            font-size: 15px;
+            width: 80px;
+            height: 40px;
+            border-radius: 7px;
+            border: none;
+          }
+
+          .secondContentRow {
+            margin-top: 2rem;
+
+            p {
+              font-size: 20px;
+              margin-right: 2rem;
+            }
+          }
         }
+      }
+    }
+
+    .textButton {
+      color: #4a7de3;
+      font-weight: 600;
+      &:hover {
+        cursor: pointer;
       }
     }
   }
@@ -71,6 +116,8 @@ const LoginPage: React.FC = () => {
   const [password, setPassword] = useState<string | "">("");
   const [error, setError] = useState<ShowErrorObject | null>(null);
 
+  const [isRemember, setIsRemember] = useState<boolean>(false);
+
   const showError = (type: string) => {
     if (error && Object.entries(error).length > 0 && error?.type == type) {
       return error.message;
@@ -78,7 +125,7 @@ const LoginPage: React.FC = () => {
     return "";
   };
 
-  const validate = () => {
+  const emailValidate = () => {
     setError(null);
     let isError = false;
     //이메일 검사용 정규 표현식
@@ -88,8 +135,24 @@ const LoginPage: React.FC = () => {
     if (!email) {
       setError({ type: "email", message: "A Email is required" });
       isError = true;
-    } else if (!password) {
+    } else if (reg.test(email)) {
+      setError({ type: "email", message: "Invalid email format" });
+      isError = true;
+    }
+    return isError;
+  };
+
+  const passwordValidate = () => {
+    setError(null);
+    let isError = false;
+    if (!password) {
       setError({ type: "password", message: "A Password is required" });
+      isError = true;
+    } else if (password.length < 8) {
+      setError({
+        type: "password",
+        message: "The Password needs to be longer",
+      });
       isError = true;
     }
     return isError;
@@ -115,7 +178,7 @@ const LoginPage: React.FC = () => {
                 placeholder="Email"
                 onUpdate={(content) => {
                   setEmail(content);
-                  validate();
+                  emailValidate();
                 }}
                 errorMessage={showError("email")}
               />
@@ -125,10 +188,33 @@ const LoginPage: React.FC = () => {
                 placeholder="Password"
                 onUpdate={(content) => {
                   setPassword(content);
-                  validate();
+                  passwordValidate();
                 }}
                 errorMessage={showError("password")}
               />
+
+              <div className="contentRow flex">
+                <div className="rememberMe flex">
+                  <input
+                    type="checkbox"
+                    checked={isRemember}
+                    onClick={() => {
+                      setIsRemember(!isRemember);
+                    }}
+                  />
+                  <p>Remember Me(1week)</p>
+                </div>
+                <span className="textButton">Forgot Password?</span>
+              </div>
+
+              <Link to="/quiz">
+                <button className="loginButton">Log In</button>
+              </Link>
+
+              <div className="secondContentRow flex">
+                <p>New to Quesmed?</p>
+                <span className="textButton">Create An Account</span>
+              </div>
             </div>
           </div>
         </div>
